@@ -1,0 +1,13 @@
+llms:
+  - name: GPT-4-turbo
+    source: huggingface
+  - name: Claude 3 Opus
+    source: lmsys
+  - name: Gemini 1.5 Pro
+    source: huggingface
+ides:
+  - name: VS Code
+    source: github
+agents:
+  - name: AutoEval
+    source: github

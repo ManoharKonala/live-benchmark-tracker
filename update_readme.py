@@ -15,16 +15,30 @@ if not os.path.exists('data'):
 
 def main():
     # Fetch data
-    llm_data = fetch_llm_benchmarks()
-    ide_data = fetch_ide_benchmarks()
-    agent_data = fetch_agent_benchmarks()
+    llm_data, ide_data, agent_data = [], [], []
+    try:
+        llm_data = fetch_llm_benchmarks()
+    except Exception as e:
+        print(f"Error fetching LLM benchmarks: {e}")
+    try:
+        ide_data = fetch_ide_benchmarks()
+    except Exception as e:
+        print(f"Error fetching IDE benchmarks: {e}")
+    try:
+        agent_data = fetch_agent_benchmarks()
+    except Exception as e:
+        print(f"Error fetching agent benchmarks: {e}")
+
     # Combine
     all_data = llm_data + ide_data + agent_data
+
     # Save
     with open(DATA_PATH, 'w') as f:
         json.dump(all_data, f, indent=2)
+
     # Format table
     table_md = format_markdown_table(all_data)
+
     # Update README
     with open(README_PATH, 'r') as f:
         readme = f.read()

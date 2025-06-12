@@ -1,10 +1,21 @@
 import requests
 
 def fetch_llm_benchmarks():
-    # Example: fetch from HuggingFace leaderboard (mocked)
-    # TODO: Implement real scraping/API
-    return [
-        {"Tool/Model": "GPT-4-turbo", "MMLU (%)": 86.5, "HumanEval (%)": 83.0, "Context Length": "128k", "Cost ($/1k tokens)": "$0.01"},
-        {"Tool/Model": "Claude 3 Opus", "MMLU (%)": 89.1, "HumanEval (%)": 87.5, "Context Length": "200k", "Cost ($/1k tokens)": "$0.01"},
-        {"Tool/Model": "Gemini 1.5 Pro", "MMLU (%)": 87.0, "HumanEval (%)": 86.0, "Context Length": "1M (streaming)", "Cost ($/1k tokens)": "$0.005"}
-    ]
+    url = "https://huggingface.co/api/leaderboards/open-llm"
+    try:
+        response = requests.get(url, timeout=20)
+        response.raise_for_status()
+        data = response.json()
+        results = []
+        for model in data.get("models", []):
+            results.append({
+                "Tool/Model": model.get("model_name", ""),
+                "MMLU (%)": model.get("mmlu", ""),
+                "HumanEval (%)": model.get("humaneval", ""),
+                "Context Length": model.get("context_length", ""),
+                "Cost ($/1k tokens)": model.get("cost", "")
+            })
+        return results
+    except Exception as e:
+        print(f"Error fetching LLM benchmarks: {e}")
+        return []

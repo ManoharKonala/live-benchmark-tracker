@@ -76,11 +76,11 @@ This repository automatically updates live benchmark scores (performance, cost, 
 
 ```mermaid
 flowchart TD
-    A[GitHub Action Triggered (Scheduled)] --> B[Run Python Script]
-    B --> C[Fetch Benchmarks from APIs / Scrapers]
-    C --> D[Format Markdown Table]
-    D --> E[Replace Section in README.md]
-    E --> F[Commit & Push Changes]
+    A["GitHub Action Triggered (Scheduled)"] --> B["Run Python Script"]
+    B --> C["Fetch Benchmarks from APIs / Scrapers"]
+    C --> D["Format Markdown Table"]
+    D --> E["Replace Section in README.md"]
+    E --> F["Commit & Push Changes"]
 ```
 
 ---

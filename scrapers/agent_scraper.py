@@ -2,7 +2,7 @@ import requests
 
 def fetch_agent_benchmarks():
     # Example: Fetch SWE-bench leaderboard from GitHub raw JSON
-    url = "https://raw.githubusercontent.com/princeton-nlp/SWE-bench/main/leaderboard/leaderboard.json"
+    url = "https://raw.githubusercontent.com/swe-bench/swe-bench.github.io/main/data/leaderboards.json"
     try:
         response = requests.get(url, timeout=20)
         response.raise_for_status()

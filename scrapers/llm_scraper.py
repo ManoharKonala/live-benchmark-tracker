@@ -1,7 +1,7 @@
 import requests
 
 def fetch_llm_benchmarks():
-    url = "https://huggingface.co/api/leaderboards/open-llm"
+    url = "https://datasets-server.huggingface.co/rows?dataset=open-llm-leaderboard/results&offset=0&length=100"
     try:
         response = requests.get(url, timeout=20)
         response.raise_for_status()

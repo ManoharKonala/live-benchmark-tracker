@@ -18,5 +18,4 @@ def fetch_agent_benchmarks():
             })
         return results
     except Exception as e:
-        print(f"Error fetching agent benchmarks: {e}")
-        return []
+        raise

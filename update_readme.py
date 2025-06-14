@@ -1,5 +1,6 @@
 import os
 import json
+import sys # Import sys
 import requests
 from datetime import datetime
 from utils.formatter import format_markdown_table
@@ -14,22 +15,22 @@ if not os.path.exists('data'):
     os.makedirs('data')
 
 def main():
-    # Fetch data
-    llm_data, ide_data, agent_data = [], [], []
+    llm_data, ide_data, agent_data = [], [], [] # Initialize here
     try:
+        # Fetch data
+        print("Fetching LLM benchmarks...")
         llm_data = fetch_llm_benchmarks()
-    except Exception as e:
-        print(f"Error fetching LLM benchmarks: {e}")
-    try:
+        print("Fetching IDE benchmarks...")
         ide_data = fetch_ide_benchmarks()
-    except Exception as e:
-        print(f"Error fetching IDE benchmarks: {e}")
-    try:
+        print("Fetching Agent benchmarks...")
         agent_data = fetch_agent_benchmarks()
+        print("All data fetched successfully.")
     except Exception as e:
-        print(f"Error fetching agent benchmarks: {e}")
+        print(f"ERROR: Failed to fetch benchmark data. Details: {e}")
+        sys.exit(1)
 
     # Combine
+    print("Combining data...")
     all_data = llm_data + ide_data + agent_data
 
     # Save

@@ -27,5 +27,4 @@ def fetch_ide_benchmarks():
                 "Cost ($/1k tokens)": "No recent build info"
             }]
     except Exception as e:
-        print(f"Error fetching IDE benchmarks: {e}")
-        return []
+        raise

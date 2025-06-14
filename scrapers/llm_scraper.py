@@ -17,5 +17,4 @@ def fetch_llm_benchmarks():
             })
         return results
     except Exception as e:
-        print(f"Error fetching LLM benchmarks: {e}")
-        return []
+        raise

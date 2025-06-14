@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: '0 */12 * * *'
   workflow_dispatch:
+  push:
+    branches:
+      - 'fix/workflow-push-conflict'
 
 jobs:
   update-benchmarks:
